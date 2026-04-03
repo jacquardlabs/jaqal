@@ -1,0 +1,18 @@
+{
+  "name": "jaqal",
+  "description": "Jaqal (jackal) — quality loom for Claude Code. Periodic health reviews, quality gates, design system extraction, and pre-deploy audits.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Jacquard Labs"
+  },
+  "repository": "https://github.com/jacquard-labs/jaqal",
+  "license": "MIT",
+  "keywords": [
+    "review",
+    "audit",
+    "product",
+    "design-system",
+    "health-check",
+    "quality-gates"
+  ]
+}
