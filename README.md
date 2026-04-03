@@ -1,13 +1,13 @@
 # Jaqal
 
-*Quality loom for Claude Code — from [Jacquard Labs](https://github.com/jacquard-labs)*
+*Quality loom for Claude Code — from [Jacquard Labs](https://github.com/jacquardlabs)*
 
 A structured workflow for keeping your product, codebase, frontend, and architecture healthy. Provides quality gates for feature development and periodic review agents that track trends over time.
 
 ## Install
 
 ```bash
-claude install github:jacquard-labs/jaqal
+claude install github:jacquardlabs/jaqal
 ```
 
 Then run `/jaqal-init` in your project to set up context documents and review directories.
