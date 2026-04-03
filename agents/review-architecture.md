@@ -59,6 +59,6 @@ For each finding, classify as:
 
 End with a recommended priority order for any refactoring work.
 
-If previous architecture reviews exist in `docs/architecture-reviews/`, compare against the most recent one.
+If previous architecture reviews exist in `docs/jaqal/architecture-reviews/`, compare against the most recent one.
 
-Save the report to `docs/architecture-reviews/YYYY-MM-DD-architecture-review.md`.
+Save the report to `docs/jaqal/architecture-reviews/YYYY-MM-DD-architecture-review.md`.

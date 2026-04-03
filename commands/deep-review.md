@@ -15,13 +15,13 @@ Spawn all four as subagents simultaneously using the Agent tool — do not run t
 
 Use these exact `subagent_type` values:
 
-1. **`review-codebase-health`** — Architecture coherence, technical debt inventory, dependency health, test health, API consistency. Saves to `docs/health-reviews/YYYY-MM-DD-health-review.md`.
+1. **`review-codebase-health`** — Architecture coherence, technical debt inventory, dependency health, test health, API consistency. Saves to `docs/jaqal/health-reviews/YYYY-MM-DD-health-review.md`.
 
-2. **`review-frontend-health`** — Design system consistency, accessibility audit, frontend code quality, responsive spot-check. Saves to `docs/frontend-reviews/YYYY-MM-DD-frontend-review.md`.
+2. **`review-frontend-health`** — Design system consistency, accessibility audit, frontend code quality, responsive spot-check. Saves to `docs/jaqal/frontend-reviews/YYYY-MM-DD-frontend-review.md`.
 
-3. **`review-architecture`** — Map dependencies, evaluate boundaries/complexity/evolution readiness/data layer. Saves to `docs/architecture-reviews/YYYY-MM-DD-architecture-review.md`.
+3. **`review-architecture`** — Map dependencies, evaluate boundaries/complexity/evolution readiness/data layer. Saves to `docs/jaqal/architecture-reviews/YYYY-MM-DD-architecture-review.md`.
 
-4. **`review-product-health`** — PRODUCT.md accuracy, product coherence, onboarding path, proposed PRODUCT.md updates. Saves to `docs/product-reviews/YYYY-MM-DD-product-review.md`.
+4. **`review-product-health`** — PRODUCT.md accuracy, product coherence, onboarding path, proposed PRODUCT.md updates. Saves to `docs/jaqal/product-reviews/YYYY-MM-DD-product-review.md`.
 
 Each agent already knows its full workflow — just tell it the project path and today's date. Run all four with `run_in_background: true`.
 
@@ -73,6 +73,6 @@ Pull the metrics snapshots from the codebase health and frontend health reports 
 | Bundle size | — | — |
 | Design system deviations | — | — |
 
-If previous review reports exist in the `docs/` subdirectories, compare against the most recent one and fill in the trend column. Otherwise mark as "baseline".
+If previous review reports exist in the `docs/jaqal/` subdirectories, compare against the most recent one and fill in the trend column. Otherwise mark as "baseline".
 
-Save the master summary to `docs/health-reviews/YYYY-MM-DD-deep-review-summary.md`.
+Save the master summary to `docs/jaqal/health-reviews/YYYY-MM-DD-deep-review-summary.md`.

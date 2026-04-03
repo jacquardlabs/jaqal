@@ -22,7 +22,7 @@ This does four things:
 
 1. **Creates PRODUCT.md** — Analyzes your codebase to extract who your users are, what the product does, what you're not building, and what's broken. Sections that need human judgment (product principles, explicit scope boundaries) are left with prompts for you to fill in.
 2. **Creates DESIGN.md** — Extracts your actual design system from code: colors, typography, spacing, component patterns, and inconsistencies. Documents what IS, not what should be.
-3. **Scaffolds review directories** — Creates `docs/health-reviews/`, `docs/frontend-reviews/`, `docs/architecture-reviews/`, and `docs/product-reviews/` for dated reports that track trends over time.
+3. **Scaffolds review directories** — Creates `docs/jaqal/health-reviews/`, `docs/jaqal/frontend-reviews/`, `docs/jaqal/architecture-reviews/`, and `docs/jaqal/product-reviews/` for dated reports that track trends over time.
 4. **Updates CLAUDE.md** — Adds the review workflow reference (gates, cadences, maintenance steps) so every future session knows the process.
 
 After init, review PRODUCT.md first — the extraction is evidence-based, but product principles and "what we're NOT building" need your voice.
@@ -126,7 +126,7 @@ This dispatches all four review agents in parallel:
 - **Architecture** — dependency graph, module boundaries, complexity distribution, data layer health, evolution readiness
 - **Product health** — PRODUCT.md accuracy check, persona drift, scope creep, feature coherence, onboarding friction
 
-Each agent saves a dated report to its `docs/` subdirectory. The deep review then compiles a master summary that cross-references findings (architecture flags coupling AND codebase health flags related tech debt = systemic issue), produces a prioritized action plan, and proposes specific updates to PRODUCT.md, DESIGN.md, and CLAUDE.md for your approval.
+Each agent saves a dated report to its `docs/jaqal/` subdirectory. The deep review then compiles a master summary that cross-references findings (architecture flags coupling AND codebase health flags related tech debt = systemic issue), produces a prioritized action plan, and proposes specific updates to PRODUCT.md, DESIGN.md, and CLAUDE.md for your approval.
 
 Metrics are captured each run so you can track trends: test coverage, TODO count, dependency health, bundle size, design system deviations.
 

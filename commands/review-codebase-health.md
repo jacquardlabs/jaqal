@@ -81,4 +81,4 @@ Capture these numbers so you can track trends across reviews:
 - Largest file (lines)
 - Deepest dependency chain
 
-Save the report to `docs/health-reviews/YYYY-MM-DD-health-review.md`.
+Save the report to `docs/jaqal/health-reviews/YYYY-MM-DD-health-review.md`.

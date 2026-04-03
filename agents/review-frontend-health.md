@@ -79,6 +79,6 @@ Polish items, minor inconsistencies, potential future problems.
 ### DESIGN.md updates
 Propose any updates to DESIGN.md based on findings — new patterns that have emerged, decisions that should be codified, anti-patterns to add.
 
-If previous frontend reviews exist in `docs/frontend-reviews/`, compare against the most recent one and note trends.
+If previous frontend reviews exist in `docs/jaqal/frontend-reviews/`, compare against the most recent one and note trends.
 
-Save the report to `docs/frontend-reviews/YYYY-MM-DD-frontend-review.md`.
+Save the report to `docs/jaqal/frontend-reviews/YYYY-MM-DD-frontend-review.md`.

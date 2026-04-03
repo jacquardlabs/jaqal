@@ -45,6 +45,6 @@ Based on this review, propose specific updates to PRODUCT.md:
 
 Present the changes as a diff against the current PRODUCT.md. Don't apply them — present them for review.
 
-If previous product reviews exist in `docs/product-reviews/`, compare against the most recent one.
+If previous product reviews exist in `docs/jaqal/product-reviews/`, compare against the most recent one.
 
-Save the report to `docs/product-reviews/YYYY-MM-DD-product-review.md`.
+Save the report to `docs/jaqal/product-reviews/YYYY-MM-DD-product-review.md`.

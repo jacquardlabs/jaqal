@@ -13,7 +13,7 @@ Help the user decide what to work on next by curating a ranked shortlist from op
 
 1. Read PRODUCT.md and CLAUDE.md for product context.
 2. Fetch all open issues via `gh issue list --json number,title,body,labels,createdAt`.
-3. Read the most recent deep review summary (`docs/health-reviews/*-deep-review-summary.md`) and any individual review reports for cross-referencing severity and findings.
+3. Read the most recent deep review summary (`docs/jaqal/health-reviews/*-deep-review-summary.md`) and any individual review reports for cross-referencing severity and findings.
 4. **Ask the user** to pick a work mode:
    - **Tech debt** — code quality, refactoring, dependency upgrades, test coverage gaps, architectural cleanup
    - **Maintenance** — bug fixes, security patches, performance improvements, accessibility fixes

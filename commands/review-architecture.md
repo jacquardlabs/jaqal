@@ -57,4 +57,4 @@ For each finding, classify as:
 
 End with a recommended priority order for any refactoring work.
 
-Save the report to `docs/architecture-reviews/YYYY-MM-DD-architecture-review.md`.
+Save the report to `docs/jaqal/architecture-reviews/YYYY-MM-DD-architecture-review.md`.

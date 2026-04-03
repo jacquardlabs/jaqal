@@ -83,6 +83,6 @@ Capture these numbers so you can track trends across reviews:
 - Largest file (lines)
 - Deepest dependency chain
 
-If previous health reviews exist in `docs/health-reviews/`, compare against the most recent one and note trends (up/down/flat).
+If previous health reviews exist in `docs/jaqal/health-reviews/`, compare against the most recent one and note trends (up/down/flat).
 
-Save the report to `docs/health-reviews/YYYY-MM-DD-health-review.md`.
+Save the report to `docs/jaqal/health-reviews/YYYY-MM-DD-health-review.md`.

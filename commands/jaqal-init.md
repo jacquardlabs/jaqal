@@ -128,10 +128,10 @@ Then run `/extract-design-system` to populate it from the codebase.
 ## Step 4 — Scaffold review directories
 
 Create these directories if they don't exist:
-- `docs/health-reviews/`
-- `docs/frontend-reviews/`
-- `docs/architecture-reviews/`
-- `docs/product-reviews/`
+- `docs/jaqal/health-reviews/`
+- `docs/jaqal/frontend-reviews/`
+- `docs/jaqal/architecture-reviews/`
+- `docs/jaqal/product-reviews/`
 
 Add a `.gitkeep` to each empty directory so they're tracked in git.
 
