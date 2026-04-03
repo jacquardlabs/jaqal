@@ -1,0 +1,49 @@
+# Contributing to Jaqal
+
+Thanks for your interest in improving Jaqal. Here's how to contribute.
+
+## Reporting issues
+
+Open an issue for bugs, unclear documentation, or suggestions. Include:
+
+- What you expected to happen
+- What actually happened
+- Which command or agent was involved
+- Your Claude Code version (`claude --version`)
+
+## Proposing changes
+
+1. **Open an issue first** for anything beyond a typo fix. Describe what you want to change and why. This saves everyone time if the change doesn't fit the project's direction.
+2. **Fork and branch** from `main`.
+3. **Make your changes.** Follow the patterns in existing files — agent frontmatter, command frontmatter, and directory structure are intentional.
+4. **Open a PR** against `main` with a clear description of what changed and why.
+
+## What makes a good contribution
+
+- **Agent or command improvements** — better prompts, clearer instructions, more useful output formats
+- **New agents or commands** that fit the existing workflow (gates, reviews, audits, backlog management)
+- **Bug fixes** — commands that don't work as documented
+- **Documentation** — README improvements, better examples
+
+## Structure conventions
+
+```
+agents/       — Agent definitions (name, description, tools, model in frontmatter)
+commands/     — Slash commands (description, allowed-tools in frontmatter)
+templates/    — Scaffold files created by /jaqal-init
+```
+
+- Agents do the work. Commands orchestrate agents or provide standalone workflows.
+- Every agent and command reads PRODUCT.md, DESIGN.md, or CLAUDE.md for project context.
+- Review reports save to `docs/jaqal/` subdirectories in the user's project, not to the plugin itself.
+- Commands that produce output are recommend-only — they report, never modify external state (issues, PRs, files outside `docs/jaqal/`).
+
+## What we won't merge
+
+- Changes that make agents modify issues, PRs, or external state without explicit user action
+- Features that duplicate what [Superpowers](https://github.com/obra/superpowers) already handles (brainstorming, planning, TDD, execution)
+- Agents that bundle multiple concerns (security + code quality in one agent) — each agent stays in its lane
+
+## Code of conduct
+
+Be respectful and constructive. We're all here to make better tools.
