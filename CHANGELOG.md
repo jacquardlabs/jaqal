@@ -2,6 +2,19 @@
 
 <!-- version list -->
 
+## v2.0.0 (2026-06-20)
+
+### Features
+
+- Rename plugin from Jaqal to Studious ([#35](https://github.com/jacquardlabs/studious/pull/35),
+  [`2e1809c`](https://github.com/jacquardlabs/studious/commit/2e1809c7f8731082f3a7ae35c86fc5092e9e232c))
+
+### Breaking Changes
+
+- The plugin installs as studious@... and the init command is /studious-init. Existing installs and
+  /jaqal-init muscle memory break; reinstall under the new name.
+
+
 ## v1.5.0 (2026-06-20)
 
 ### Bug Fixes
