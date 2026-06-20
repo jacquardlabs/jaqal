@@ -1,21 +1,27 @@
 # Jaqal
 
-Quality loom for Claude Code, from [Jacquard Labs](https://github.com/jacquardlabs).
+A product development workflow for Claude Code, from [Jacquard Labs](https://github.com/jacquardlabs).
 
-Jaqal gives your Claude Code sessions a structured product development workflow: decide what to build, gate it before and after implementation, audit it before merge, and periodically review the health of your entire project.
+## Why
 
-It handles the what and the whether: what to work on, whether a design serves users, whether the implementation delivers, whether the codebase is healthy. Pair it with [Superpowers](https://github.com/obra/superpowers) for the how: brainstorming, planning, TDD, and execution.
+Claude Code made building cheap. That moved the bottleneck. The hard part is no longer *can we build it*. It's *should we build it, and did we build it right*.
 
-## Getting started
+Jaqal adds that judgment back as lightweight gates and reviews woven around the building. It owns the *what* and the *whether*: what to work on, whether a design serves users, whether the implementation delivers, whether the codebase stays healthy. Pair it with [Superpowers](https://github.com/obra/superpowers) for the *how*: brainstorming, planning, TDD, and execution.
 
-Install via the Jacquard Labs marketplace:
+## How it works
+
+Jaqal runs on 2 rhythms. A per-feature gate flow that checks each piece of work before and after you build it, and a per-project health loop that reviews the whole on a cadence. Both read from 3 context documents (PRODUCT.md, DESIGN.md, CLAUDE.md) that hold your product's through-lines, so every judgment is grounded in the same context. That's the whole system.
+
+## Install
+
+Via the Jacquard Labs marketplace:
 
 ```bash
 /plugin marketplace add jacquardlabs/marketplace
 /plugin install jaqal@jacquardlabs-marketplace
 ```
 
-Or install this plugin directly:
+Or directly:
 
 ```bash
 /plugin marketplace add jacquardlabs/jaqal
@@ -28,170 +34,70 @@ Then, in any project:
 /jaqal-init
 ```
 
-This does 4 things:
+This creates your context documents (PRODUCT.md and DESIGN.md, extracted from the codebase as it actually is), scaffolds the `docs/jaqal/` review directories, and wires the workflow reference into CLAUDE.md so every future session knows the process. Review PRODUCT.md first. The extraction is evidence-based, but product principles and your "not building" list need your voice.
 
-1. Creates PRODUCT.md: analyzes your codebase to extract who your users are, what the product does, what you're not building, and what's broken. Sections that need human judgment (product principles, explicit scope boundaries) are left with prompts for you to fill in.
-2. Creates DESIGN.md: extracts your actual design system from code: colors, typography, spacing, component patterns, and inconsistencies. Documents what IS, not what should be.
-3. Scaffolds review directories: creates `docs/jaqal/health-reviews/`, `docs/jaqal/frontend-reviews/`, `docs/jaqal/architecture-reviews/`, and `docs/jaqal/product-reviews/` for dated reports that track trends over time.
-4. Updates CLAUDE.md: adds the review workflow reference (gates, cadences, maintenance steps) so every future session knows the process.
+## Building a feature
 
-After init, review PRODUCT.md first; the extraction is evidence-based, but product principles and "what we're NOT building" need your voice.
+Jaqal wraps feature development in quality gates. Between them you build, and Jaqal doesn't care how. Each gate exists to catch a specific failure:
 
----
-
-## Building features
-
-Jaqal wraps feature development in 3 quality gates. Between the gates, you build; Jaqal doesn't care how. We recommend [Superpowers](https://github.com/obra/superpowers) for brainstorming, planning, and execution, but any workflow works.
-
-### Pick what to build
-
-Start from your backlog or an idea. If you have open GitHub issues:
-
-```
-/backlog-priorities
-```
-
-Asks what kind of work you're in the mood for (tech debt, maintenance, polish, or new initiative), then ranks your open issues by severity from past reviews, product alignment, and unblocking potential. It recommends; you decide.
-
-If you're starting from a raw idea instead of an issue:
-
-```
-/gate-should-we-build add a leaderboard for study streaks
-```
-
-Evaluates the idea against PRODUCT.md: who it serves, how it ranks against known problems, whether it conflicts with your "not building" list, and what the smallest viable version looks like. Ends with a clear verdict: BUILD, BUILD SMALLER, DEFER, or DON'T BUILD.
-
-### Gate the design
-
-After you have a design doc (from Superpowers brainstorm or written by hand):
-
-```
-/gate-design-review
-```
-
-A product reviewer evaluates the design against PRODUCT.md, then walks through it as your primary persona would, step by step, noting where they'd get confused or frustrated. Verdict: PROCEED TO PLAN, REVISE (with specific changes), or RETHINK.
-
-### Build it
-
-Use your preferred workflow. Superpowers provides `/write-plan` and `/execute-plan` for structured implementation with TDD and review checkpoints.
-
-### Audit before merge
-
-When implementation is complete and tests pass:
-
-```
-/audit
-```
-
-Dispatches 7 auditors in parallel: security, code quality, documentation, architecture, UX, frontend code, and accessibility. Each stays in its lane (the security auditor doesn't flag code style; the code auditor doesn't flag XSS). Results compile into a single report with a verdict: PASS, FIX AND RE-AUDIT, or NEEDS DISCUSSION.
-
-Frontend auditors are skipped automatically for branches with no frontend changes.
-
-### Gate acceptance
-
-After the audit passes:
-
-```
-/gate-acceptance
-```
-
-Not a code review, a product review. Does the implementation actually deliver the intended experience? A product reviewer walks through every user-facing change, checks error states and edge cases for human-friendly messaging, regression-tests the critical user journeys from PRODUCT.md, and names the one thing a real user would complain about. Verdict: SHIP, FIX AND RE-CHECK, or HOLD.
-
-### The full flow
+- Pick what to build with `/backlog-priorities` (ranks your open GitHub issues by severity/alignment/unblocking potential) or `/gate-should-we-build [idea]` (scores a raw idea against PRODUCT.md and the smallest version worth shipping). Catches building the wrong thing.
+- Gate the design with `/gate-design-review`. It walks your design doc as your primary persona would and flags where they'd get confused or frustrated. Catches a bad design before you spend build effort on it.
+- Build it with your own workflow. Superpowers gives you plan/execute with TDD and review checkpoints. Jaqal steps back here.
+- Audit before merge with `/audit`: 7 auditors in parallel (security, code quality, docs, architecture, UX, frontend, accessibility), each staying in its lane. Frontend auditors skip automatically on branches with no frontend changes.
+- Gate acceptance with `/gate-acceptance`. Product review, not code review: does the implementation actually deliver the experience? It walks every user-facing change, checks error states for human-friendly messaging, and regression-tests the critical journeys in PRODUCT.md.
 
 ```
 /backlog-priorities  or  /gate-should-we-build [idea]
          ↓
-   design doc (brainstorm)
+   design doc
          ↓
-   /gate-design-review        → PROCEED / REVISE / RETHINK
+   /gate-design-review
          ↓
-   implement (plan + execute)
+   implement
          ↓
-   /audit                     → PASS / FIX / DISCUSS
+   /audit
          ↓
-   /gate-acceptance            → SHIP / FIX / HOLD
+   /gate-acceptance
          ↓
        merge
 ```
 
-You don't have to use every gate every time. For small bug fixes, `/audit` alone is enough. The gates prevent building the wrong thing or shipping a bad experience; use judgment about when that risk applies.
+You don't need every gate every time. For small fixes, `/audit` alone is enough. The gates exist to catch building the wrong thing or shipping a bad experience. Use judgment about when that risk applies.
 
----
-
-## Periodic health checks
+## Keeping the project healthy
 
 Separate from the feature flow: periodic reviews that assess overall project health. These run against main, not feature branches.
 
-### The full sweep
-
-```
-/deep-review
-```
-
-Dispatches all 4 review agents in parallel:
-
-- Codebase health: architecture coherence, tech debt inventory, dependency vulnerabilities, test coverage gaps, API consistency
-- Frontend health: design system drift, accessibility audit, component quality, responsive behavior
-- Architecture: dependency graph, module boundaries, complexity distribution, data layer health, evolution readiness
-- Product health: PRODUCT.md accuracy check, persona drift, scope creep, feature coherence, onboarding friction
-
-Each agent saves a dated report to its `docs/jaqal/` subdirectory. The deep review compiles a master summary, cross-references findings (architecture flags coupling + codebase health flags related tech debt = systemic issue), produces a prioritized action plan, and proposes specific updates to PRODUCT.md/DESIGN.md/CLAUDE.md for your approval.
-
-Metrics are captured each run for trend tracking: test coverage, TODO count, dependency health, bundle size, design system deviations.
-
-### Individual reviews
+`/deep-review` dispatches all 4 review agents in parallel and compiles a master summary: it cross-references findings across reviews, produces a prioritized action plan, and proposes updates to your context docs for approval. Metrics are captured each run for trend tracking.
 
 Run any review on its own when you don't need the full sweep:
 
-| Command | When to run |
-|---------|-------------|
-| `/review-codebase-health` | Weekly or before milestones |
-| `/review-frontend-health` | Monthly or after a batch of UI work |
-| `/review-architecture` | Quarterly or before a major new feature area |
-| `/review-product-health` | Monthly or when the product feels like it's drifting |
+| Review | What it checks | Cadence |
+|--------|----------------|---------|
+| `/review-codebase-health` | Architecture coherence, tech debt, dependencies, test gaps | Weekly or pre-milestone |
+| `/review-frontend-health` | Design drift, accessibility, component quality | Monthly or post-UI work |
+| `/review-architecture` | Module boundaries, complexity, evolution readiness | Quarterly or pre-major-feature |
+| `/review-product-health` | PRODUCT.md accuracy, persona drift, scope creep | Monthly or when it feels off |
+| `/deep-review` | All 4, plus a compiled summary | Monthly |
 
-### Backlog cleanup
-
-```
-/backlog-hygiene
-```
-
-Scans all open GitHub issues against recent commits, PRODUCT.md, and review reports. Flags issues that have been resolved (with commit evidence), made obsolete (conflicts with "not building" or describes removed code), or duplicated. Never modifies issues, just produces a report.
-
-Good to run after a `/deep-review` cycle to catch issues resolved by that cycle's fixes.
-
-### Suggested cadence
-
-| What | How often |
-|------|-----------|
-| `/deep-review` | Monthly |
-| `/backlog-hygiene` | Monthly, or after a deep review |
-| `/backlog-priorities` | Start of each work session |
-| Individual reviews | As the cadence table above suggests |
-
----
+`/backlog-hygiene` scans open GitHub issues against recent commits, PRODUCT.md, and review reports, then flags the ones that are resolved/obsolete/duplicated. Run it after a `/deep-review` to catch what that cycle's fixes resolved. It reports, never modifies.
 
 ## Context documents
 
-Everything in Jaqal depends on 3 files in your project root. `/jaqal-init` creates them; you maintain them.
+Everything in Jaqal reads from 3 files in your project root. `/jaqal-init` creates them; you maintain them.
 
-| Document | What it contains | Updated by |
-|----------|-----------------|------------|
-| PRODUCT.md | Personas, principles, feature map, known problems, "not building" list | You + `/review-product-health` proposals |
-| DESIGN.md | Colors, typography, spacing, component patterns, inconsistencies | You + `/review-frontend-health` proposals |
-| CLAUDE.md | Technical conventions, review workflow reference | You + `/review-architecture` proposals |
+| Document | What it holds | Updated by |
+|----------|---------------|------------|
+| PRODUCT.md | Personas, principles, known problems, "not building" list | You + `/review-product-health` |
+| DESIGN.md | Colors, typography, spacing, component patterns | You + `/review-frontend-health` |
+| CLAUDE.md | Technical conventions, review workflow reference | You + `/review-architecture` |
 
-Reviews propose updates to these docs, never apply them; you review and approve the changes.
-
-If a context doc gets stale, the reviews will tell you. That's the point.
-
----
+Reviews propose updates to these docs. They never apply them. You review and approve. If a doc goes stale, the reviews tell you. That's the point.
 
 ## Works well with
 
-- [Superpowers](https://github.com/obra/superpowers): brainstorming, planning, TDD, debugging, and execution workflows. Jaqal gates the what and whether; Superpowers handles the how.
-- GitHub Issues: `/backlog-priorities` and `/backlog-hygiene` work with your issue tracker via `gh` CLI.
+- [Superpowers](https://github.com/obra/superpowers): brainstorming, planning, TDD, debugging, and execution. Jaqal gates the what and whether; Superpowers handles the how.
+- GitHub Issues: `/backlog-priorities` and `/backlog-hygiene` work with your tracker via the `gh` CLI.
 
 ## License
 
