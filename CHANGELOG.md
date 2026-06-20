@@ -2,6 +2,36 @@
 
 <!-- version list -->
 
+## v1.5.0 (2026-06-20)
+
+### Bug Fixes
+
+- Align product-reviewer verdicts to the gates, specify doc discovery (I5, I6)
+  ([#23](https://github.com/jacquardlabs/jaqal/pull/23),
+  [`76c71cd`](https://github.com/jacquardlabs/jaqal/commit/76c71cd58cf2aa3cc67c55250daa44ee18f20060))
+
+- Audit cleanup batch (I7, I8, I9, minors) ([#23](https://github.com/jacquardlabs/jaqal/pull/23),
+  [`76c71cd`](https://github.com/jacquardlabs/jaqal/commit/76c71cd58cf2aa3cc67c55250daa44ee18f20060))
+
+- Re-wire the PR gate hook as a plugin-level hooks.json (B1)
+  ([#23](https://github.com/jacquardlabs/jaqal/pull/23),
+  [`76c71cd`](https://github.com/jacquardlabs/jaqal/commit/76c71cd58cf2aa3cc67c55250daa44ee18f20060))
+
+- Reconcile /gate-audit severities, diff base, and a11y call (B2, I1, I2)
+  ([#23](https://github.com/jacquardlabs/jaqal/pull/23),
+  [`76c71cd`](https://github.com/jacquardlabs/jaqal/commit/76c71cd58cf2aa3cc67c55250daa44ee18f20060))
+
+### Features
+
+- Enforce language idioms and conventions in code-auditor (I3, I4)
+  ([#23](https://github.com/jacquardlabs/jaqal/pull/23),
+  [`76c71cd`](https://github.com/jacquardlabs/jaqal/commit/76c71cd58cf2aa3cc67c55250daa44ee18f20060))
+
+- Remediate the behavioral audit — hook fix, idiom enforcement, gate-contract repairs
+  ([#23](https://github.com/jacquardlabs/jaqal/pull/23),
+  [`76c71cd`](https://github.com/jacquardlabs/jaqal/commit/76c71cd58cf2aa3cc67c55250daa44ee18f20060))
+
+
 ## v1.4.0 (2026-06-20)
 
 ### Features
