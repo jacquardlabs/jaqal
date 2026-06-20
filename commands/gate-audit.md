@@ -31,7 +31,7 @@ Spawn auditors 1–6 as subagents simultaneously — do not run them sequentiall
 
 6. **@agent-frontend-reviewer** — Review frontend code changes for component architecture, state management patterns, data fetching, render performance, and bundle impact.
 
-7. **Web Interface Guidelines (external, optional)** — This check depends on the `web-design-guidelines` skill, which ships separately, not with Jaqal. If it's installed, invoke the `web-design-guidelines` skill against all modified frontend files (components, pages, layouts) to check accessibility, keyboard support, form behavior, focus management, semantic HTML, and animation. Unlike auditors 1–6, this runs inline rather than as a parallel subagent. If the skill isn't available, note "accessibility check skipped — web-design-guidelines not installed" and move on.
+7. **Web Interface Guidelines (external, optional)** — This check depends on the `web-design-guidelines` skill, which ships separately, not with Studious. If it's installed, invoke the `web-design-guidelines` skill against all modified frontend files (components, pages, layouts) to check accessibility, keyboard support, form behavior, focus management, semantic HTML, and animation. Unlike auditors 1–6, this runs inline rather than as a parallel subagent. If the skill isn't available, note "accessibility check skipped — web-design-guidelines not installed" and move on.
 
 ## After all auditors return
 

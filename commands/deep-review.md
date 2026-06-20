@@ -15,11 +15,11 @@ Read CLAUDE.md, PRODUCT.md, and DESIGN.md first.
 
 | Keyword | `subagent_type` | What it reviews | Report path |
 |---------|-----------------|-----------------|-------------|
-| `codebase` (or `health`) | `review-codebase-health` | Architecture coherence, tech debt, dependency health, test health, API consistency | `docs/jaqal/health-reviews/YYYY-MM-DD-health-review.md` |
-| `frontend` | `review-frontend-health` | Design system consistency, accessibility, frontend code quality, responsive spot-check | `docs/jaqal/frontend-reviews/YYYY-MM-DD-frontend-review.md` |
-| `architecture` (or `arch`) | `review-architecture` | Dependency map, boundaries, complexity, evolution readiness, data layer | `docs/jaqal/architecture-reviews/YYYY-MM-DD-architecture-review.md` |
-| `product` | `review-product-health` | PRODUCT.md accuracy, product coherence, onboarding path, proposed PRODUCT.md updates | `docs/jaqal/product-reviews/YYYY-MM-DD-product-review.md` |
-| `readme` | `review-readme` | README drift: stale claims, missing features, broken commands/paths/links, voice drift, proposed diff | `docs/jaqal/readme-reviews/YYYY-MM-DD-readme-review.md` |
+| `codebase` (or `health`) | `review-codebase-health` | Architecture coherence, tech debt, dependency health, test health, API consistency | `docs/studious/health-reviews/YYYY-MM-DD-health-review.md` |
+| `frontend` | `review-frontend-health` | Design system consistency, accessibility, frontend code quality, responsive spot-check | `docs/studious/frontend-reviews/YYYY-MM-DD-frontend-review.md` |
+| `architecture` (or `arch`) | `review-architecture` | Dependency map, boundaries, complexity, evolution readiness, data layer | `docs/studious/architecture-reviews/YYYY-MM-DD-architecture-review.md` |
+| `product` | `review-product-health` | PRODUCT.md accuracy, product coherence, onboarding path, proposed PRODUCT.md updates | `docs/studious/product-reviews/YYYY-MM-DD-product-review.md` |
+| `readme` | `review-readme` | README drift: stale claims, missing features, broken commands/paths/links, voice drift, proposed diff | `docs/studious/readme-reviews/YYYY-MM-DD-readme-review.md` |
 
 If `$ARGUMENTS` is non-empty but matches no keyword, list the valid keywords and stop.
 
@@ -88,6 +88,6 @@ Pull the metrics snapshots from the codebase health and frontend health reports 
 
 Every row maps to a metric one of the two health reports actually emits — don't add rows no agent produces.
 
-If previous review reports exist in the `docs/jaqal/` subdirectories, compare against the most recent one and fill in the trend column. Otherwise mark as "baseline".
+If previous review reports exist in the `docs/studious/` subdirectories, compare against the most recent one and fill in the trend column. Otherwise mark as "baseline".
 
-Save the master summary to `docs/jaqal/health-reviews/YYYY-MM-DD-deep-review-summary.md`.
+Save the master summary to `docs/studious/health-reviews/YYYY-MM-DD-deep-review-summary.md`.
