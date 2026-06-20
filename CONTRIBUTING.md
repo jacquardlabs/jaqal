@@ -30,10 +30,12 @@ Open an issue for bugs, unclear documentation, or suggestions. Include:
 ```
 agents/       — Agent definitions (name, description, tools, model in frontmatter)
 commands/     — Slash commands (description, allowed-tools in frontmatter)
+skills/       — Natural-language trigger shims (skills/<name>/SKILL.md)
 templates/    — Scaffold files created by /jaqal-init
 ```
 
 - Agents do the work. Commands orchestrate agents or provide standalone workflows.
+- Skills are trigger shims: a tightly-scoped `description` lets a gate fire from natural language, and the body delegates to the matching command instead of duplicating it.
 - Every agent and command reads PRODUCT.md, DESIGN.md, or CLAUDE.md for project context.
 - Review reports save to `docs/jaqal/` subdirectories in the user's project, not to the plugin itself.
 - Commands that produce output are recommend-only — they report, never modify external state (issues, PRs, files outside `docs/jaqal/`).
@@ -45,6 +47,7 @@ Names encode two things — whether something is an action or a role, and what s
 - **Commands are actions** — an action prefix plus its target: `gate-` (per-change checkpoints), `review-`/`deep-review` (periodic health), `extract-` (one-time scaffolding), `backlog-` (issue triage). The verb goes in front.
 - **Agents are either a 1:1 reviewer or a role.** Periodic, project-scoped reviewers share their command's `review-*` name (currently spawned by `/deep-review`). Changeset specialists spawned by a fan-out command (`/gate-audit`, the gates) are named by role: `<domain>-auditor` for technical/rule checks (security, code, doc, architecture), `<domain>-reviewer` for human-judgment checks (product, ux, frontend).
 - **One fan-out command, many subagents.** Parallel checks belong to subagents under a single entry point (`/gate-audit`, `/deep-review`), not to their own top-level commands. Don't add a command per check.
+- **Skills are named for the intent they detect** — `evaluate-feature-idea`, `review-design-before-build`, `acceptance-check-before-merge` — not for the command they call. The `description` carries the trigger; keep it conservative (fire on explicit intent, list what it should NOT match) so a gate never interrupts when it isn't wanted.
 
 ## Model assignments
 
