@@ -1,5 +1,5 @@
 ---
-description: Run all four periodic reviews in parallel — codebase health, frontend health, architecture, and product health — then compile a master summary with prioritized actions
+description: Run all five periodic reviews in parallel — codebase health, frontend health, architecture, product health, and README drift — then compile a master summary with prioritized actions
 allowed-tools: Read, Glob, Grep, Bash, Task, Write, Edit
 ---
 
@@ -9,9 +9,9 @@ Run every periodic review against the current codebase on main. This is the "run
 
 Read CLAUDE.md, PRODUCT.md, and DESIGN.md first.
 
-## Phase 1 — Run all four reviews in parallel
+## Phase 1 — Run all five reviews in parallel
 
-Spawn all four as subagents simultaneously using the Agent tool — do not run them sequentially.
+Spawn all five as subagents simultaneously using the Agent tool — do not run them sequentially.
 
 Use these exact `subagent_type` values:
 
@@ -23,11 +23,13 @@ Use these exact `subagent_type` values:
 
 4. **`review-product-health`** — PRODUCT.md accuracy, product coherence, onboarding path, proposed PRODUCT.md updates. Saves to `docs/jaqal/product-reviews/YYYY-MM-DD-product-review.md`.
 
-Each agent already knows its full workflow — just tell it the project path and today's date. Run all four with `run_in_background: true`.
+5. **`review-readme`** — README drift against PRODUCT.md and the codebase: stale claims, missing features, broken commands/paths/links, voice drift, structure gaps, proposed README diff. Saves to `docs/jaqal/readme-reviews/YYYY-MM-DD-readme-review.md`.
+
+Each agent already knows its full workflow — just tell it the project path and today's date. Run all five with `run_in_background: true`.
 
 ## Phase 2 — Compile master summary
 
-After all four reviews complete, read all four reports and synthesize a single master summary.
+After all five reviews complete, read all five reports and synthesize a single master summary.
 
 ### Cross-review findings
 
@@ -35,10 +37,11 @@ Identify findings that appear in multiple reviews. These are systemic issues, no
 - Architecture review flags coupling AND codebase health flags related tech debt = systemic issue
 - Product review flags a feature as low-value AND frontend review flags its code as complex = removal candidate
 - Frontend review flags design drift AND product review flags persona drift = alignment problem
+- README review flags a documented feature that no longer exists AND product review flags scope creep = the product moved and nothing tracked it
 
 ### Prioritized action plan
 
-Compile a single prioritized list across all four reviews:
+Compile a single prioritized list across all five reviews:
 
 **Critical (this week)**
 All critical findings from every review, deduplicated and ordered by impact.
@@ -55,6 +58,7 @@ Based on the reviews, list specific updates needed for each context doc (per the
 - **PRODUCT.md** — changes proposed by product health review
 - **DESIGN.md** — changes proposed by frontend health review
 - **CLAUDE.md** — changes proposed by architecture review
+- **README.md** — diff proposed by README drift review
 
 Do NOT apply these changes. Present them as proposed diffs for the user to review and approve.
 

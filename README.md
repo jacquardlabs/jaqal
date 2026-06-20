@@ -68,7 +68,7 @@ You don't need every gate every time. For small fixes, `/audit` alone is enough.
 
 Separate from the feature flow: periodic reviews that assess overall project health. These run against main, not feature branches.
 
-`/deep-review` dispatches all 4 review agents in parallel and compiles a master summary: it cross-references findings across reviews, produces a prioritized action plan, and proposes updates to your context docs for approval. Metrics are captured each run for trend tracking.
+`/deep-review` dispatches all 5 review agents in parallel and compiles a master summary: it cross-references findings across reviews, produces a prioritized action plan, and proposes updates to your context docs for approval. Metrics are captured each run for trend tracking.
 
 Run any review on its own when you don't need the full sweep:
 
@@ -79,7 +79,7 @@ Run any review on its own when you don't need the full sweep:
 | `/review-architecture` | Module boundaries, complexity, evolution readiness | Quarterly or pre-major-feature |
 | `/review-product-health` | PRODUCT.md accuracy, persona drift, scope creep | Monthly or when it feels off |
 | `/review-readme` | README drift: stale claims, broken commands, voice | After a release or feature batch |
-| `/deep-review` | All 4, plus a compiled summary | Monthly |
+| `/deep-review` | All 5, plus a compiled summary | Monthly |
 
 `/backlog-hygiene` scans open GitHub issues against recent commits, PRODUCT.md, and review reports, then flags the ones that are resolved/obsolete/duplicated. Run it after a `/deep-review` to catch what that cycle's fixes resolved. It reports, never modifies.
 
