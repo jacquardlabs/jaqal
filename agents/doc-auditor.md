@@ -33,6 +33,9 @@ Find documentation gaps.
 - Outdated environment variable docs
 - Missing architecture overview
 - Incomplete contribution guidelines
+- README drift: documented commands, flags, scripts, or paths that no longer exist or behave differently
+- Features or install/run steps described in the README that the changeset renamed or removed
+- When auditing a branch, scope this to drift the changeset introduced — does the diff contradict what the README still claims?
 
 ### Inline Quality
 - Functions >20 lines without comments

@@ -19,7 +19,7 @@ Spawn all of the following as subagents simultaneously — do not run them seque
 
 2. **@agent-code-auditor** — Review the full changeset for code duplication, complexity, naming consistency, and error handling patterns.
 
-3. **@agent-doc-auditor** — Analyze documentation gaps. Are new APIs documented? Are inline comments adequate? Is the README current?
+3. **@agent-doc-auditor** — Analyze documentation gaps. Are new APIs documented? Are inline comments adequate? Do this branch's new, changed, or removed commands, install steps, flags, or file paths contradict what the README claims? Flag README drift introduced by the changeset, not just missing sections.
 
 4. **@agent-architect-reviewer** — Review architectural decisions in this changeset. Does it fit existing patterns? Any coupling concerns? Scalability issues?
 
