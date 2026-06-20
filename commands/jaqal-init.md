@@ -198,6 +198,7 @@ Add this section:
    - `/review-product-health` updates PRODUCT.md
    - `/review-frontend-health` updates DESIGN.md
    - `/review-architecture` updates CLAUDE.md
+   - `/review-readme` proposes a README.md diff
 ```
 
 ## Step 7 — Summary
