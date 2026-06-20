@@ -1,5 +1,5 @@
 ---
-description: Run all auditors in parallel — security, code quality, docs, architecture, UX, frontend, and accessibility
+description: Run the audit suite — security, code quality, docs, architecture, UX, and frontend in parallel, plus an optional accessibility pass
 allowed-tools: Read, Glob, Grep, Bash, Task, Write
 ---
 
@@ -11,7 +11,7 @@ Read CLAUDE.md, PRODUCT.md, and DESIGN.md first.
 
 ## Launch all auditors in parallel
 
-Spawn all of the following as subagents simultaneously — do not run them sequentially:
+Spawn auditors 1–6 as subagents simultaneously — do not run them sequentially. Auditor 7 is an inline external check, described below.
 
 ### Backend auditors
 
@@ -29,7 +29,7 @@ Spawn all of the following as subagents simultaneously — do not run them seque
 
 6. **@agent-frontend-reviewer** — Review frontend code changes for component architecture, state management patterns, data fetching, render performance, and bundle impact.
 
-7. **Web Interface Guidelines** — Run `/web-interface-guidelines` against all modified frontend files (components, pages, layouts). Check accessibility, keyboard support, form behavior, focus management, semantic HTML, and animation.
+7. **Web Interface Guidelines (external, optional)** — This check depends on the `web-design-guidelines` skill, which ships separately, not with Jaqal. If it's installed, run `/web-interface-guidelines` against all modified frontend files (components, pages, layouts) to check accessibility, keyboard support, form behavior, focus management, semantic HTML, and animation. Unlike auditors 1–6, this runs inline rather than as a parallel subagent. If the skill isn't available, note "accessibility check skipped — web-design-guidelines not installed" and move on.
 
 ## After all auditors return
 

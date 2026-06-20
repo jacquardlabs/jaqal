@@ -7,6 +7,8 @@ allowed-tools: Read, Glob, Grep, Bash, Task
 
 Help decide what to work on next by curating a ranked shortlist from open issues.
 
+> Requires GitHub Issues via the `gh` CLI. PRODUCT.md may link a different tracker (Linear, Jira) — this command only reads GitHub Issues. If the project tracks work elsewhere, it doesn't apply.
+
 Read PRODUCT.md and CLAUDE.md first for product context.
 
 ## Run the analysis
