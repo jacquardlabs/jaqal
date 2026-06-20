@@ -11,7 +11,7 @@ This is a periodic review of the entire codebase, not scoped to any feature bran
 
 Read CLAUDE.md and PRODUCT.md first for full project context.
 
-## Run these audits in parallel using subagents:
+## Run these checks:
 
 ### 1. Architecture coherence
 
