@@ -62,7 +62,7 @@ Read CLAUDE.md first for the project's documented technical conventions. They ar
 CLAUDE.md's documented conventions are authoritative and override everything below. Then:
 - Detect the changed files' language(s) by extension.
 - **Run the language's idiom linter read-only** if one is configured or available, and fold its findings in. Never pass a fix/`--fix` flag — this audit reports, it doesn't modify. Examples: Python — `ruff check --select C4,SIM,PERF,B,RUF,PIE`; JS/TS — `eslint` or `biome check`; Go — `golangci-lint run`; Rust — `cargo clippy`; Ruby — `rubocop`. If no linter is available, say so and recommend adding one.
-- **Apply the judgment-level idioms a linter can't catch** using the language rubric in `reference/idioms/<language>.md` (shipped with Jaqal). Flag non-idiomatic constructs — e.g. in Python: manual index loops that should be a comprehension/`enumerate`/`zip`, hand-rolled logic that's a one-liner with `collections`/`itertools`/`functools`, key-existence branches that should be `dict.get`/`defaultdict`, string concatenation in loops, mutable default arguments.
+- **Apply the judgment-level idioms a linter can't catch** using the language rubric in `reference/idioms/<language>.md` (shipped with Studious). Flag non-idiomatic constructs — e.g. in Python: manual index loops that should be a comprehension/`enumerate`/`zip`, hand-rolled logic that's a one-liner with `collections`/`itertools`/`functools`, key-existence branches that should be `dict.get`/`defaultdict`, string concatenation in loops, mutable default arguments.
 - Honor any deviation CLAUDE.md documents (e.g. "explicit loops in hot paths") and don't flag it.
 
 ### Error handling

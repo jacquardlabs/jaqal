@@ -1,4 +1,4 @@
-# Jaqal
+# Studious
 
 A product development workflow for Claude Code, from [Jacquard Labs](https://github.com/jacquardlabs).
 
@@ -6,11 +6,11 @@ A product development workflow for Claude Code, from [Jacquard Labs](https://git
 
 Claude Code made building cheap. That moved the bottleneck. The hard part is no longer *can we build it*. It's *should we build it, and did we build it right*.
 
-Jaqal adds that judgment back as lightweight gates and reviews woven around the building. It owns the *what* and the *whether*: what to work on, whether a design serves users, whether the implementation delivers, whether the codebase stays healthy. Pair it with [Superpowers](https://github.com/obra/superpowers) for the *how*: brainstorming, planning, TDD, and execution.
+Studious adds that judgment back as lightweight gates and reviews woven around the building. It owns the *what* and the *whether*: what to work on, whether a design serves users, whether the implementation delivers, whether the codebase stays healthy. Pair it with [Superpowers](https://github.com/obra/superpowers) for the *how*: brainstorming, planning, TDD, and execution.
 
 ## How it works
 
-Jaqal runs on 2 rhythms. A per-feature gate flow that checks each piece of work before and after you build it, and a per-project health loop that reviews the whole on a cadence. Both read from 3 context documents (PRODUCT.md, DESIGN.md, CLAUDE.md) that hold your product's through-lines, so every judgment is grounded in the same context. That's the whole system.
+Studious runs on 2 rhythms. A per-feature gate flow that checks each piece of work before and after you build it, and a per-project health loop that reviews the whole on a cadence. Both read from 3 context documents (PRODUCT.md, DESIGN.md, CLAUDE.md) that hold your product's through-lines, so every judgment is grounded in the same context. That's the whole system.
 
 ## Install
 
@@ -18,31 +18,31 @@ Via the Jacquard Labs marketplace:
 
 ```bash
 /plugin marketplace add jacquardlabs/marketplace
-/plugin install jaqal@jacquardlabs-marketplace
+/plugin install studious@jacquardlabs-marketplace
 ```
 
 Or directly:
 
 ```bash
-/plugin marketplace add jacquardlabs/jaqal
-/plugin install jaqal@jaqal
+/plugin marketplace add jacquardlabs/studious
+/plugin install studious@studious
 ```
 
 Then, in any project:
 
 ```
-/jaqal-init
+/studious-init
 ```
 
-This creates your context documents (PRODUCT.md and DESIGN.md, extracted from the codebase as it actually is), scaffolds the `docs/jaqal/` review directories, and wires the workflow reference into CLAUDE.md so every future session knows the process. Review PRODUCT.md first. The extraction is evidence-based, but product principles and your "not building" list need your voice.
+This creates your context documents (PRODUCT.md and DESIGN.md, extracted from the codebase as it actually is), scaffolds the `docs/studious/` review directories, and wires the workflow reference into CLAUDE.md so every future session knows the process. Review PRODUCT.md first. The extraction is evidence-based, but product principles and your "not building" list need your voice.
 
 ## Building a feature
 
-Jaqal wraps feature development in quality gates. Between them you build, and Jaqal doesn't care how. Each gate exists to catch a specific failure:
+Studious wraps feature development in quality gates. Between them you build, and Studious doesn't care how. Each gate exists to catch a specific failure:
 
 - Pick what to build with `/backlog-priorities` (ranks your open GitHub issues by severity/alignment/unblocking potential) or `/gate-should-we-build [idea]` (scores a raw idea against PRODUCT.md and the smallest version worth shipping). Catches building the wrong thing.
 - Gate the design with `/gate-design-review`. It walks your design doc as your primary persona would and flags where they'd get confused or frustrated. Catches a bad design before you spend build effort on it.
-- Build it with your own workflow. Superpowers gives you plan/execute with TDD and review checkpoints. Jaqal steps back here.
+- Build it with your own workflow. Superpowers gives you plan/execute with TDD and review checkpoints. Studious steps back here.
 - Audit before merge with `/gate-audit`: 6 auditors in parallel (security, code quality, docs, architecture, UX, frontend), each staying in its lane, plus an accessibility pass via the Web Interface Guidelines skill when it's installed. Frontend auditors skip automatically on branches with no frontend changes.
 - Gate acceptance with `/gate-acceptance`. Product review, not code review: does the implementation actually deliver the experience? It walks every user-facing change, checks error states for human-friendly messaging, and regression-tests the critical journeys in PRODUCT.md.
 
@@ -87,7 +87,7 @@ Aim it at one area when you don't need the full sweep — each review has its ow
 
 ## Context documents
 
-Everything in Jaqal reads from 3 files in your project root. `/jaqal-init` creates them; you maintain them.
+Everything in Studious reads from 3 files in your project root. `/studious-init` creates them; you maintain them.
 
 | Document | What it holds | Updated by |
 |----------|---------------|------------|
@@ -99,7 +99,7 @@ Reviews propose updates to these docs. They never apply them. You review and app
 
 ## Works well with
 
-- [Superpowers](https://github.com/obra/superpowers): brainstorming, planning, TDD, debugging, and execution. Jaqal gates the what and whether; Superpowers handles the how.
+- [Superpowers](https://github.com/obra/superpowers): brainstorming, planning, TDD, debugging, and execution. Studious gates the what and whether; Superpowers handles the how.
 - GitHub Issues: `/backlog-priorities` and `/backlog-hygiene` work with your tracker via the `gh` CLI.
 
 ## License

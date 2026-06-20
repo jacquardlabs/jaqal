@@ -1,5 +1,5 @@
 ---
-description: Initialize Jaqal in the current project — creates PRODUCT.md, DESIGN.md, scaffolds review directories, and configures CLAUDE.md
+description: Initialize Studious in the current project — creates PRODUCT.md, DESIGN.md, scaffolds review directories, and configures CLAUDE.md
 allowed-tools: Read, Glob, Grep, Bash, Task, Write, Edit, WebFetch
 ---
 
@@ -147,11 +147,11 @@ Cover, at minimum: what it is, install, a runnable usage example, and license. W
 ## Step 5 — Scaffold review directories
 
 Create these directories if they don't exist:
-- `docs/jaqal/health-reviews/`
-- `docs/jaqal/frontend-reviews/`
-- `docs/jaqal/architecture-reviews/`
-- `docs/jaqal/product-reviews/`
-- `docs/jaqal/readme-reviews/`
+- `docs/studious/health-reviews/`
+- `docs/studious/frontend-reviews/`
+- `docs/studious/architecture-reviews/`
+- `docs/studious/product-reviews/`
+- `docs/studious/readme-reviews/`
 
 Add a `.gitkeep` to each empty directory so they're tracked in git.
 
@@ -171,7 +171,7 @@ Add this section:
 
 ### Code conventions
 
-Language conventions `code-auditor` enforces at `/gate-audit`. Document the rules and any deliberate deviations here — they override Jaqal's built-in idiom rubric.
+Language conventions `code-auditor` enforces at `/gate-audit`. Document the rules and any deliberate deviations here — they override Studious's built-in idiom rubric.
 
 - **<language>** — <conventions, e.g. "Python 3.11+. Prefer comprehensions, generator expressions, and stdlib (functools, itertools, collections) over explicit loops. Type hints required.">
 - **Linter** — <the idiom linter and its rule selection, e.g. "Ruff with C4,SIM,PERF,B,RUF,PIE; run `ruff check` before pushing.">
@@ -220,6 +220,6 @@ Report what was created, what was populated, and what the user should review:
 - CLAUDE.md — sections added
 - Review directories created
 
-Note that the plugin's PR-time gate reminder is already active (it ships with Jaqal as a `PreToolUse` hook — no per-project wiring needed) and fires a non-blocking confirmation when you run `gh pr create`.
+Note that the plugin's PR-time gate reminder is already active (it ships with Studious as a `PreToolUse` hook — no per-project wiring needed) and fires a non-blocking confirmation when you run `gh pr create`.
 
 Suggest the user review PRODUCT.md first (product principles and "not building" sections need human judgment), then DESIGN.md (anti-patterns section needs human input), then README.md if one was generated.

@@ -1,5 +1,5 @@
 {
-  "description": "Jaqal PR-time gate reminder — non-blocking 'ask' before `gh pr create`",
+  "description": "Studious PR-time gate reminder — non-blocking 'ask' before `gh pr create`",
   "hooks": {
     "PreToolUse": [
       {

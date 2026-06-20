@@ -1,6 +1,6 @@
-# Contributing to Jaqal
+# Contributing to Studious
 
-Thanks for your interest in improving Jaqal. Here's how to contribute.
+Thanks for your interest in improving Studious. Here's how to contribute.
 
 ## Reporting issues
 
@@ -33,14 +33,14 @@ commands/     — Slash commands (description, allowed-tools in frontmatter)
 skills/       — Natural-language trigger shims (skills/<name>/SKILL.md)
 hooks/        — Shipped hook scripts + hooks.json (e.g. the PR-time gate reminder)
 reference/    — Curated rubrics agents read at audit time (e.g. reference/idioms/<lang>.md)
-templates/    — Scaffold files created by /jaqal-init
+templates/    — Scaffold files created by /studious-init
 ```
 
 - Agents do the work. Commands orchestrate agents or provide standalone workflows.
 - Skills are trigger shims: a tightly-scoped `description` lets a gate fire from natural language, and the body delegates to the matching command instead of duplicating it.
 - Every agent and command reads PRODUCT.md, DESIGN.md, or CLAUDE.md for project context.
-- Review reports save to `docs/jaqal/` subdirectories in the user's project, not to the plugin itself.
-- Commands that produce output are recommend-only — they report, never modify external state (issues, PRs, files outside `docs/jaqal/`).
+- Review reports save to `docs/studious/` subdirectories in the user's project, not to the plugin itself.
+- Commands that produce output are recommend-only — they report, never modify external state (issues, PRs, files outside `docs/studious/`).
 
 ## Naming conventions
 
