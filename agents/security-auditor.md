@@ -7,7 +7,7 @@ model: inherit
 
 # Security Audit
 
-Single source of truth for ALL security checks. Output to `.claude/audits/AUDIT_SECURITY.md`.
+Single source of truth for ALL security checks. Return your findings to the orchestrator that invoked you.
 
 ## Scope
 
