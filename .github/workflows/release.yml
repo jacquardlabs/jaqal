@@ -27,11 +27,30 @@ jobs:
         run: pip install python-semantic-release
 
       - name: Compute version and push tag
-        run: semantic-release version
+        id: version
+        run: |
+          BEFORE=$(git describe --tags --abbrev=0 2>/dev/null || echo "none")
+          semantic-release version
+          AFTER=$(git describe --tags --abbrev=0 2>/dev/null || echo "none")
+          if [ "$BEFORE" != "$AFTER" ]; then
+            echo "released=true" >> "$GITHUB_OUTPUT"
+            echo "Released $AFTER (was $BEFORE)"
+          else
+            echo "released=false" >> "$GITHUB_OUTPUT"
+            echo "No release (still $AFTER)"
+          fi
         env:
           GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
 
       - name: Publish GitHub release
         run: semantic-release publish
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+
+      # Push-notify the marketplace to re-pin this plugin's SHA immediately.
+      # The marketplace's nightly poll remains the self-healing backstop.
+      - name: Notify marketplace to update pins
+        if: steps.version.outputs.released == 'true'
+        run: gh workflow run update-pins.yml --repo jacquardlabs/marketplace
         env:
           GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
