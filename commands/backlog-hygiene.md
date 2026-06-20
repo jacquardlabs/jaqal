@@ -7,6 +7,8 @@ allowed-tools: Read, Glob, Grep, Bash, Task
 
 Identify open GitHub issues that should be closed because they've been resolved, made obsolete, or duplicated by other issues. Run weekly or before milestones.
 
+> Requires GitHub Issues via the `gh` CLI. PRODUCT.md may link a different tracker (Linear, Jira) — this command only reads GitHub Issues. If the project tracks work elsewhere, it doesn't apply.
+
 Read PRODUCT.md and CLAUDE.md first for product context.
 
 ## Run the analysis

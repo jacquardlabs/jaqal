@@ -74,7 +74,7 @@ If PRODUCT.md doesn't exist, create it from the template:
 <!-- How this makes money (or will). Pricing, plans, monetization approach. -->
 ```
 
-Then run `/extract-product-context` to populate it from the codebase.
+Then populate it as part of init — run the `/extract-product-context` workflow inline now. Don't stop and hand this back as a separate step; extract the product context from the codebase and continue. (Users can re-run `/extract-product-context` on its own later to refresh.)
 
 ## Step 3 — Create DESIGN.md (if needed)
 
@@ -129,7 +129,7 @@ If DESIGN.md doesn't exist, create it from the template:
 <!-- Fill in as you discover patterns that hurt the product -->
 ```
 
-Then run `/extract-design-system` to populate it from the codebase.
+Then populate it as part of init — run the `/extract-design-system` workflow inline now. Don't stop and hand this back as a separate step; extract the design system from the codebase and continue. (Users can re-run `/extract-design-system` on its own later to refresh.)
 
 ## Step 4 — Create README.md (if needed)
 
