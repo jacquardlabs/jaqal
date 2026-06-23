@@ -2,6 +2,21 @@
 
 <!-- version list -->
 
+## v2.1.0 (2026-06-23)
+
+### Documentation
+
+- Dogfood Studious's own PRODUCT.md and DESIGN.md
+  ([#36](https://github.com/jacquardlabs/studious/pull/36),
+  [`64d0a44`](https://github.com/jacquardlabs/studious/commit/64d0a4481ea591a90fe31be54a7576bd663e3c27))
+
+### Features
+
+- Generalize DESIGN.md from visual-UI to interface-general
+  ([#36](https://github.com/jacquardlabs/studious/pull/36),
+  [`64d0a44`](https://github.com/jacquardlabs/studious/commit/64d0a4481ea591a90fe31be54a7576bd663e3c27))
+
+
 ## v2.0.0 (2026-06-20)
 
 ### Features
