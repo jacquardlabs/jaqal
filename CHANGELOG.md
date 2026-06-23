@@ -2,6 +2,15 @@
 
 <!-- version list -->
 
+## v2.1.1 (2026-06-23)
+
+### Bug Fixes
+
+- Align init's CLAUDE.md tier vocabulary with review output
+  ([#37](https://github.com/jacquardlabs/studious/pull/37),
+  [`ab93158`](https://github.com/jacquardlabs/studious/commit/ab93158a4cf3fbeed5718d48c6b2aa31e646470b))
+
+
 ## v2.1.0 (2026-06-23)
 
 ### Documentation
