@@ -2,6 +2,92 @@
 
 <!-- version list -->
 
+## v2.2.0 (2026-06-23)
+
+### Bug Fixes
+
+- Clean up temp file and drive gate-ledger status off a gate→token table
+  ([#38](https://github.com/jacquardlabs/studious/pull/38),
+  [`f2141df`](https://github.com/jacquardlabs/studious/commit/f2141df2f405d2c8682b81740662be000e25792a))
+
+- Make gate-ledger record degrade silently without jq/git
+  ([#38](https://github.com/jacquardlabs/studious/pull/38),
+  [`f2141df`](https://github.com/jacquardlabs/studious/commit/f2141df2f405d2c8682b81740662be000e25792a))
+
+- Read gate-ledger verdicts via jq --arg so hyphenated gate names work
+  ([#38](https://github.com/jacquardlabs/studious/pull/38),
+  [`f2141df`](https://github.com/jacquardlabs/studious/commit/f2141df2f405d2c8682b81740662be000e25792a))
+
+- Resolve plugin root once so gate-ledger tests pass under CI invocation
+  ([#38](https://github.com/jacquardlabs/studious/pull/38),
+  [`f2141df`](https://github.com/jacquardlabs/studious/commit/f2141df2f405d2c8682b81740662be000e25792a))
+
+- Rewrite gate-ledger arg guard as explicit if (shellcheck SC2015)
+  ([#38](https://github.com/jacquardlabs/studious/pull/38),
+  [`f2141df`](https://github.com/jacquardlabs/studious/commit/f2141df2f405d2c8682b81740662be000e25792a))
+
+- Surface a signal when the gate ledger can't be recorded
+  ([#38](https://github.com/jacquardlabs/studious/pull/38),
+  [`f2141df`](https://github.com/jacquardlabs/studious/commit/f2141df2f405d2c8682b81740662be000e25792a))
+
+### Chores
+
+- Add markdownlint config ratcheting current state
+  ([#38](https://github.com/jacquardlabs/studious/pull/38),
+  [`f2141df`](https://github.com/jacquardlabs/studious/commit/f2141df2f405d2c8682b81740662be000e25792a))
+
+- Ignore local .studious gate ledger ([#38](https://github.com/jacquardlabs/studious/pull/38),
+  [`f2141df`](https://github.com/jacquardlabs/studious/commit/f2141df2f405d2c8682b81740662be000e25792a))
+
+### Continuous Integration
+
+- Lint shell scripts with shellcheck ([#38](https://github.com/jacquardlabs/studious/pull/38),
+  [`f2141df`](https://github.com/jacquardlabs/studious/commit/f2141df2f405d2c8682b81740662be000e25792a))
+
+### Documentation
+
+- Correct gh pr create in the README flow diagram
+  ([#38](https://github.com/jacquardlabs/studious/pull/38),
+  [`f2141df`](https://github.com/jacquardlabs/studious/commit/f2141df2f405d2c8682b81740662be000e25792a))
+
+- Disclose the .gitignore write in the README
+  ([#38](https://github.com/jacquardlabs/studious/pull/38),
+  [`f2141df`](https://github.com/jacquardlabs/studious/commit/f2141df2f405d2c8682b81740662be000e25792a))
+
+- Document the gate ledger, PR-hook reminder, and new directories
+  ([#38](https://github.com/jacquardlabs/studious/pull/38),
+  [`f2141df`](https://github.com/jacquardlabs/studious/commit/f2141df2f405d2c8682b81740662be000e25792a))
+
+### Features
+
+- Add @agent-/skill reference link-checker ([#38](https://github.com/jacquardlabs/studious/pull/38),
+  [`f2141df`](https://github.com/jacquardlabs/studious/commit/f2141df2f405d2c8682b81740662be000e25792a))
+
+- Add CI self-verification workflow ([#38](https://github.com/jacquardlabs/studious/pull/38),
+  [`f2141df`](https://github.com/jacquardlabs/studious/commit/f2141df2f405d2c8682b81740662be000e25792a))
+
+- Add gate-ledger record/status helper ([#38](https://github.com/jacquardlabs/studious/pull/38),
+  [`f2141df`](https://github.com/jacquardlabs/studious/commit/f2141df2f405d2c8682b81740662be000e25792a))
+
+- Add plugin manifest validator ([#38](https://github.com/jacquardlabs/studious/pull/38),
+  [`f2141df`](https://github.com/jacquardlabs/studious/commit/f2141df2f405d2c8682b81740662be000e25792a))
+
+- Make PR gate reminder specific via the gate ledger
+  ([#38](https://github.com/jacquardlabs/studious/pull/38),
+  [`f2141df`](https://github.com/jacquardlabs/studious/commit/f2141df2f405d2c8682b81740662be000e25792a))
+
+- Record audit/acceptance verdicts to the gate ledger
+  ([#38](https://github.com/jacquardlabs/studious/pull/38),
+  [`f2141df`](https://github.com/jacquardlabs/studious/commit/f2141df2f405d2c8682b81740662be000e25792a))
+
+- Report gate staleness as commit count, not raw SHAs
+  ([#38](https://github.com/jacquardlabs/studious/pull/38),
+  [`f2141df`](https://github.com/jacquardlabs/studious/commit/f2141df2f405d2c8682b81740662be000e25792a))
+
+- Self-verification harness + gate ledger ([#38](https://github.com/jacquardlabs/studious/pull/38),
+  [`f2141df`](https://github.com/jacquardlabs/studious/commit/f2141df2f405d2c8682b81740662be000e25792a))
+
+
 ## v2.1.1 (2026-06-23)
 
 ### Bug Fixes
