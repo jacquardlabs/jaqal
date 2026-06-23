@@ -35,7 +35,10 @@ cmd_record() {
       *) echo "gate-ledger: unknown arg '$1'" >&2; return 2 ;;
     esac
   done
-  [ -n "$gate" ] && [ -n "$verdict" ] || { echo "gate-ledger: --gate and --verdict required" >&2; return 2; }
+  if [ -z "$gate" ] || [ -z "$verdict" ]; then
+    echo "gate-ledger: --gate and --verdict required" >&2
+    return 2
+  fi
   if ! have jq || ! have git; then return 0; fi
 
   ensure_gitignore
