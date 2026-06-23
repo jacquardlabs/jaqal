@@ -86,6 +86,9 @@ Pull the metrics snapshots from the codebase health and interface health reports
 | Known vulnerabilities | — | — | codebase health |
 | Largest file (lines) | — | — | codebase health |
 | Deepest dependency chain | — | — | codebase health |
+| Coupling / circular-dependency count | — | — | codebase health |
+| Dead-code symbol count | — | — | codebase health |
+| Endpoint-convention-violation count | — | — | codebase health |
 | Surfaces reviewed | — | — | interface health |
 | Cross-surface inconsistencies | — | — | interface health |
 | Design system deviations | — | — | interface health |
