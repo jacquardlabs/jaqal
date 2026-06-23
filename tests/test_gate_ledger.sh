@@ -2,7 +2,8 @@
 # Integration tests for bin/gate-ledger. Requires git + jq.
 set -uo pipefail
 
-LEDGER="$(cd "$(dirname "$0")/.." && pwd)/bin/gate-ledger"
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+LEDGER="$ROOT/bin/gate-ledger"
 fails=0
 
 check() { # description, expected, actual
@@ -78,16 +79,16 @@ out=$(cd "$d5" && "$LEDGER" status)
 check "status empty when no ledger" "" "$out"
 
 # --- hook surfaces the ledger reason and always asks ---
-HOOK="$(cd "$(dirname "$0")/.." && pwd)/hooks/gate-reminder.sh"
+HOOK="$ROOT/hooks/gate-reminder.sh"
 d6=$(sandbox)
 ( cd "$d6" && "$LEDGER" record --gate audit --verdict PASS )
-hook_out=$(cd "$d6" && CLAUDE_PLUGIN_ROOT="$(cd "$(dirname "$0")/.." && pwd)" \
+hook_out=$(cd "$d6" && CLAUDE_PLUGIN_ROOT="$ROOT" \
   bash "$HOOK" <<<'{"tool_input":{"command":"gh pr create"}}')
 contains "hook decision is ask" '"permissionDecision": "ask"' "$hook_out"
 contains "hook reason names missing acceptance" "acceptance never ran" "$hook_out"
 
 # --- hook stays silent for non-PR commands ---
-hook_noop=$(cd "$d6" && CLAUDE_PLUGIN_ROOT="$(cd "$(dirname "$0")/.." && pwd)" \
+hook_noop=$(cd "$d6" && CLAUDE_PLUGIN_ROOT="$ROOT" \
   bash "$HOOK" <<<'{"tool_input":{"command":"ls -la"}}')
 check "hook ignores non-PR commands" "" "$hook_noop"
 
