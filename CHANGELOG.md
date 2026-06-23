@@ -2,6 +2,20 @@
 
 <!-- version list -->
 
+## v2.3.0 (2026-06-23)
+
+### Bug Fixes
+
+- Address gate-audit findings ([#47](https://github.com/jacquardlabs/studious/pull/47),
+  [`af83b1b`](https://github.com/jacquardlabs/studious/commit/af83b1bba0be733cf3be1fc232dbe55c2d488f66))
+
+### Features
+
+- Standardize prompt contract across the 14 review/audit agents
+  ([#47](https://github.com/jacquardlabs/studious/pull/47),
+  [`af83b1b`](https://github.com/jacquardlabs/studious/commit/af83b1bba0be733cf3be1fc232dbe55c2d488f66))
+
+
 ## v2.2.0 (2026-06-23)
 
 ### Bug Fixes
