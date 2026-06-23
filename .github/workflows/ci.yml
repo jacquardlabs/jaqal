@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  markdown:
+    name: markdownlint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npx -y markdownlint-cli2
+
+  python-checks:
+    name: link-check + schema + unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - name: Link-check references
+        run: uv run --no-project python scripts/check_references.py
+      - name: Validate plugin manifest
+        run: uv run --no-project python scripts/validate_plugin.py
+      - name: Unit tests
+        run: uv run --no-project --with pytest pytest tests/python -v
+
+  ledger:
+    name: gate-ledger tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Gate-ledger integration tests
+        run: bash tests/test_gate_ledger.sh
