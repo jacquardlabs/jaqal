@@ -54,7 +54,7 @@ Skip this lane entirely if the repo has no dependency manifest; note that in the
 ### 5. Test health
 
 Skip if the repo has no test suite; note that in the residual.
-- Overall test coverage — run the repo's coverage tool and report the number; if none exists, say so.
+- Overall test coverage — report it from the most recent CI run or an existing coverage artifact; do NOT execute the suite (running coverage runs the tests, which the read-only boundary forbids). If no coverage data exists, say so.
 - The 5 most-changed files in recent git history with NO test coverage (high-risk gaps).
 - Skipped/pending/retry-flagged tests (flaky signals); test-to-code ratio outliers by module.
 - Metric: test coverage percentage, untested-high-churn-file count.
@@ -81,9 +81,9 @@ Structure the report:
 **Metrics snapshot** — the numbers below. These key names are a **contract with `/deep-review`'s dashboard** (`commands/deep-review.md`) — do not rename them:
 
 - Lines of code
-- Test coverage percentage
+- Test coverage
 - TODO/FIXME count
-- Outdated dependencies
+- Outdated deps
 - Known vulnerabilities
 - Largest file (lines)
 - Deepest dependency chain

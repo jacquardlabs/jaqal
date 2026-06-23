@@ -21,7 +21,7 @@ Read CLAUDE.md, PRODUCT.md, and DESIGN.md first. **Start with DESIGN.md's `## Su
 
 ### 1. Cross-surface consistency (all products)
 
-This is this review's unique, highest-value check — `gate-audit` skips cross-surface consistency and points here for it, and a web-only review misses it entirely. For every product with more than one surface:
+This is this review's unique, highest-value check — `gate-audit` skips cross-surface consistency and points to `/deep-review interface` (this review) for it, and a web-only review misses it entirely. For every product with more than one surface:
 
 - For each concept in DESIGN.md's vocabulary, verify the canonical display form renders identically on every surface that shows it (a status label reads the same in CLI, TUI, and HTML report).
 - Verify each surface imports the single source of truth rather than defining a local copy.
