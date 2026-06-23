@@ -77,5 +77,19 @@ d5=$(sandbox)
 out=$(cd "$d5" && "$LEDGER" status)
 check "status empty when no ledger" "" "$out"
 
+# --- hook surfaces the ledger reason and always asks ---
+HOOK="$(cd "$(dirname "$0")/.." && pwd)/hooks/gate-reminder.sh"
+d6=$(sandbox)
+( cd "$d6" && "$LEDGER" record --gate audit --verdict PASS )
+hook_out=$(cd "$d6" && CLAUDE_PLUGIN_ROOT="$(cd "$(dirname "$0")/.." && pwd)" \
+  bash "$HOOK" <<<'{"tool_input":{"command":"gh pr create"}}')
+contains "hook decision is ask" '"permissionDecision": "ask"' "$hook_out"
+contains "hook reason names missing acceptance" "acceptance never ran" "$hook_out"
+
+# --- hook stays silent for non-PR commands ---
+hook_noop=$(cd "$d6" && CLAUDE_PLUGIN_ROOT="$(cd "$(dirname "$0")/.." && pwd)" \
+  bash "$HOOK" <<<'{"tool_input":{"command":"ls -la"}}')
+check "hook ignores non-PR commands" "" "$hook_noop"
+
 echo "----"
 if [ "$fails" -eq 0 ]; then echo "all gate-ledger tests passed"; exit 0; else echo "$fails failure(s)"; exit 1; fi
