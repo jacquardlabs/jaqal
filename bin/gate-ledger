@@ -36,14 +36,15 @@ cmd_record() {
     esac
   done
   [ -n "$gate" ] && [ -n "$verdict" ] || { echo "gate-ledger: --gate and --verdict required" >&2; return 2; }
-  have jq && have git || return 0
+  if ! have jq || ! have git; then return 0; fi
 
   ensure_gitignore
   mkdir -p "$LEDGER_DIR"
   local file; file="$LEDGER_DIR/$(branch_slug).json"
   [ -f "$file" ] || printf '{"branch":"","gates":{}}' > "$file"
 
-  local tmp; tmp=$(mktemp)
+  local tmp; tmp=$(mktemp "$LEDGER_DIR/.tmp.XXXXXX")
+  trap 'rm -f "$tmp"' RETURN
   jq --arg b "$(branch_name)" --arg g "$gate" --arg v "$verdict" \
      --arg s "$(head_sha)" --arg t "$(now_iso)" \
      '.branch = $b | .gates[$g] = {verdict: $v, sha: $s, ranAt: $t}' \
@@ -51,24 +52,30 @@ cmd_record() {
 }
 
 cmd_status() {
-  have jq && have git || return 0
+  if ! have jq || ! have git; then return 0; fi
   local file; file="$LEDGER_DIR/$(branch_slug).json"
   [ -f "$file" ] || return 0
 
-  local head a_v a_s c_v c_s
+  local head
   head=$(head_sha)
-  a_v=$(jq -r '.gates.audit.verdict // empty' "$file")
-  a_s=$(jq -r '.gates.audit.sha // empty' "$file")
-  c_v=$(jq -r '.gates.acceptance.verdict // empty' "$file")
-  c_s=$(jq -r '.gates.acceptance.sha // empty' "$file")
 
+  # Gate→pass-token table: "gate:PASS_TOKEN" entries, audit-then-acceptance order preserved.
+  local gates=("audit:PASS" "acceptance:SHIP")
   local msgs=()
-  [ -z "$a_v" ] && msgs+=("audit never ran on this branch")
-  [ -z "$c_v" ] && msgs+=("acceptance never ran on this branch")
-  [ -n "$a_v" ] && [ "$a_s" != "$head" ] && msgs+=("audit ran at $a_s but HEAD is $head — re-run before merging")
-  [ -n "$c_v" ] && [ "$c_s" != "$head" ] && msgs+=("acceptance ran at $c_s but HEAD is $head — re-run before merging")
-  [ -n "$a_v" ] && [ "$a_s" = "$head" ] && [ "$a_v" != "PASS" ] && msgs+=("audit returned $a_v")
-  [ -n "$c_v" ] && [ "$c_s" = "$head" ] && [ "$c_v" != "SHIP" ] && msgs+=("acceptance returned $c_v")
+  local gate pass v s entry
+  for entry in "${gates[@]}"; do
+    gate="${entry%%:*}"
+    pass="${entry##*:}"
+    v=$(jq -r ".gates.$gate.verdict // empty" "$file")
+    s=$(jq -r ".gates.$gate.sha // empty" "$file")
+    if [ -z "$v" ]; then
+      msgs+=("$gate never ran on this branch")
+    elif [ "$s" != "$head" ]; then
+      msgs+=("$gate ran at $s but HEAD is $head — re-run before merging")
+    elif [ "$v" != "$pass" ]; then
+      msgs+=("$gate returned $v")
+    fi
+  done
 
   if [ "${#msgs[@]}" -eq 0 ]; then
     printf 'audit (PASS) and acceptance (SHIP) ran on this branch at HEAD — proceed.'
