@@ -29,18 +29,21 @@ Open an issue for bugs, unclear documentation, or suggestions. Include:
 
 ```
 agents/       — Agent definitions (name, description, tools, model in frontmatter)
+bin/          — Executables used by commands (e.g. gate-ledger for recording gate verdicts)
 commands/     — Slash commands (description, allowed-tools in frontmatter)
+scripts/      — CI helper scripts (link checking, manifest validation)
 skills/       — Natural-language trigger shims (skills/<name>/SKILL.md)
 hooks/        — Shipped hook scripts + hooks.json (e.g. the PR-time gate reminder)
 reference/    — Curated rubrics agents read at audit time (e.g. reference/idioms/<lang>.md)
 templates/    — Scaffold files created by /studious-init
+tests/        — Python and shell tests for commands and CI scripts
 ```
 
 - Agents do the work. Commands orchestrate agents or provide standalone workflows.
 - Skills are trigger shims: a tightly-scoped `description` lets a gate fire from natural language, and the body delegates to the matching command instead of duplicating it.
 - Every agent and command reads PRODUCT.md, DESIGN.md, or CLAUDE.md for project context.
 - Review reports save to `docs/studious/` subdirectories in the user's project, not to the plugin itself.
-- Commands that produce output are recommend-only — they report, never modify external state (issues, PRs, files outside `docs/studious/`).
+- Commands that produce output are recommend-only — they report, never modify external state (issues, PRs, files outside `docs/studious/`). **Exception:** gate commands (`/gate-audit`, `/gate-acceptance`) record their verdicts to a local, gitignored `.studious/` ledger in the consuming project; the ledger auto-appends `.studious/` to `.gitignore` on first write.
 
 ## Naming conventions
 

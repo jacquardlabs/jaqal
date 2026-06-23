@@ -36,3 +36,17 @@ Map the product-reviewer's severities to this gate's verdict:
 - **HOLD** — a BLOCKER that's a fundamental gap between design intent and implementation, needing rework beyond quick fixes.
 
 For FIX AND RE-CHECK items, be specific enough that they can go directly into the engineering chain as fix tasks.
+
+## Record the verdict
+
+After stating the verdict, record it to the local gate ledger so the PR-time reminder
+can be specific. Run (substituting the verdict token you just assigned — `SHIP`,
+`FIX AND RE-CHECK`, or `HOLD`):
+
+```bash
+gate-ledger record --gate acceptance --verdict "SHIP"
+```
+
+The ledger is local and gitignored — it never enters the repo. If the `gate-ledger`
+command is not found (the plugin's `bin/` may not be on your PATH), tell the user the
+verdict could not be recorded to the gate ledger — do not skip silently.

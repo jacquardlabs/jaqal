@@ -59,8 +59,12 @@ Studious wraps feature development in quality gates. Between them you build, and
          ↓
    /gate-acceptance
          ↓
+   gh pr create
+         ↓
        merge
 ```
+
+When you run `gh pr create`, a PR-time hook reads the gate verdicts recorded to a local `.studious/` ledger (which Studious adds to your `.gitignore` on first run) and gives a specific reminder — naming gates that never ran, ran on an older commit, or didn't pass — while staying non-blocking.
 
 You don't need every gate every time. For small fixes, `/gate-audit` alone is enough. The gates exist to catch building the wrong thing or shipping a bad experience. Use judgment about when that risk applies.
 
