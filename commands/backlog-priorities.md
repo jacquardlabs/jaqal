@@ -1,5 +1,6 @@
 ---
 description: Curate a ranked shortlist from open GitHub issues based on your current intent — tech debt, maintenance, polish, or new initiative
+argument-hint: "[tech-debt | maintenance | polish | new-initiative]"
 allowed-tools: Read, Glob, Grep, Bash, Task
 ---
 
@@ -13,11 +14,11 @@ Read PRODUCT.md and CLAUDE.md first for product context.
 
 ## Run the analysis
 
-Spawn @agent-backlog-priorities to:
+Pass `$ARGUMENTS` to @agent-backlog-priorities as the work-mode intent. If it's empty, the agent asks; if it names an intent, the agent proceeds with it and skips the prompt. Spawn @agent-backlog-priorities to:
 
 1. Fetch all open issues via `gh issue list`.
 2. Read the most recent deep review summary and individual review reports.
-3. Ask the user to pick a work mode:
+3. Resolve the work mode — use the intent from `$ARGUMENTS` if supplied, otherwise ask the user to pick:
    - **Tech debt** — code quality, refactoring, dependency upgrades, test coverage gaps
    - **Maintenance** — bug fixes, security patches, performance, accessibility
    - **Polish existing feature** — finish, adjust, or improve something already shipped
