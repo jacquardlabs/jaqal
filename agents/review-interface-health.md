@@ -1,6 +1,6 @@
 ---
 name: review-interface-health
-description: Periodic interface health review — cross-surface consistency, design-system adherence, accessibility, and interface code quality across whatever surfaces the product has (web, CLI, TUI, API, plugin, report)
+description: Periodic interface review — cross-surface consistency, design-system, accessibility.
 tools: Read, Glob, Grep, Bash, Write
 model: inherit
 ---
