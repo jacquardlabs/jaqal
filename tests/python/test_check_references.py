@@ -36,3 +36,38 @@ def test_passes_when_internal_skill_exists(tmp_path: Path) -> None:
     (tmp_path / "skills" / "real-skill").mkdir(parents=True)
     _write(tmp_path / "commands" / "gate.md", "invoke the `real-skill` skill")
     assert find_broken(tmp_path) == []
+
+
+def test_resolves_existing_reference_file(tmp_path: Path) -> None:
+    _write(tmp_path / "reference" / "security-checklist.md", "x")
+    _write(
+        tmp_path / "agents" / "security-auditor.md",
+        "consult `reference/security-checklist.md`",
+    )
+    assert find_broken(tmp_path) == []
+
+
+def test_flags_missing_reference_file(tmp_path: Path) -> None:
+    _write(tmp_path / "agents" / "security-auditor.md", "see `reference/ghost.md`")
+    errors = find_broken(tmp_path)
+    assert any("reference/ghost.md" in e for e in errors)
+
+
+def test_resolves_reference_placeholder_path_via_directory(tmp_path: Path) -> None:
+    # code-auditor cites a template path with a <language> placeholder; the literal
+    # file can't exist, so the containing directory is what gets validated.
+    _write(tmp_path / "reference" / "idioms" / "python.md", "x")
+    _write(
+        tmp_path / "agents" / "code-auditor.md",
+        "apply `reference/idioms/<language>.md`",
+    )
+    assert find_broken(tmp_path) == []
+
+
+def test_flags_reference_placeholder_with_missing_directory(tmp_path: Path) -> None:
+    _write(
+        tmp_path / "agents" / "code-auditor.md",
+        "apply `reference/ghosts/<language>.md`",
+    )
+    errors = find_broken(tmp_path)
+    assert any("reference/ghosts" in e for e in errors)

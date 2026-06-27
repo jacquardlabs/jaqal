@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify every @agent-* and internal-skill reference in commands/ and agents/ resolves.
+"""Verify every @agent-*, internal-skill, and reference/ path in commands/ and agents/ resolves.
 
 Run from CI to catch broken cross-references (e.g. an agent rename that orphans a
 command's @agent-* reference). Standard library only.
@@ -15,6 +15,9 @@ SCAN_DIRS = ("commands", "agents")
 AGENT_RE = re.compile(r"@agent-([a-z0-9-]+)")
 # "the `<name>` skill" is the codebase's phrasing for a skill reference.
 SKILL_RE = re.compile(r"the `([a-z0-9-]+)` skill")
+# Curated rubric paths agents cite, e.g. `reference/security-checklist.md` or the
+# template `reference/idioms/<language>.md`. Angle-bracket placeholders are allowed.
+REFERENCE_RE = re.compile(r"reference/[A-Za-z0-9_./<>-]+\.md")
 # Skills referenced by name but legitimately shipped elsewhere, not in this repo.
 EXTERNAL_SKILLS = {"web-design-guidelines"}
 
@@ -40,6 +43,21 @@ def find_broken(root: Path) -> list[str]:
                     errors.append(
                         f"skill `{name}` referenced in {rel} but skills/{name}/ missing"
                     )
+            for ref in sorted(set(REFERENCE_RE.findall(text))):
+                if "<" in ref:
+                    # Template path (e.g. reference/idioms/<language>.md): the literal
+                    # file can't exist, so validate the deepest placeholder-free dir.
+                    parts: list[str] = []
+                    for part in ref.split("/"):
+                        if "<" in part:
+                            break
+                        parts.append(part)
+                    if not root.joinpath(*parts).is_dir():
+                        errors.append(
+                            f"{ref} referenced in {rel} but {'/'.join(parts)}/ missing"
+                        )
+                elif not (root / ref).is_file():
+                    errors.append(f"{ref} referenced in {rel} but {ref} missing")
     return errors
 
 
@@ -50,7 +68,7 @@ def main() -> int:
         for e in errors:
             print(f"  - {e}")
         return 1
-    print("Reference check passed: all @agent-* and skill references resolve.")
+    print("Reference check passed: all @agent-*, skill, and reference/ paths resolve.")
     return 0
 
 
