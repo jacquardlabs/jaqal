@@ -2,6 +2,29 @@
 
 <!-- version list -->
 
+## v2.4.0 (2026-06-27)
+
+### Documentation
+
+- Add design spec for backlog-priorities overview mode
+  ([#51](https://github.com/jacquardlabs/studious/pull/51),
+  [`c1a5569`](https://github.com/jacquardlabs/studious/commit/c1a5569a413f558942c9b630177904b72a1e845a))
+
+### Features
+
+- Add overview mode to backlog-priorities agent
+  ([#51](https://github.com/jacquardlabs/studious/pull/51),
+  [`c1a5569`](https://github.com/jacquardlabs/studious/commit/c1a5569a413f558942c9b630177904b72a1e845a))
+
+- Add overview mode to backlog-priorities command
+  ([#51](https://github.com/jacquardlabs/studious/pull/51),
+  [`c1a5569`](https://github.com/jacquardlabs/studious/commit/c1a5569a413f558942c9b630177904b72a1e845a))
+
+- Backlog-priorities overview mode (no-arg → top-1 per area)
+  ([#51](https://github.com/jacquardlabs/studious/pull/51),
+  [`c1a5569`](https://github.com/jacquardlabs/studious/commit/c1a5569a413f558942c9b630177904b72a1e845a))
+
+
 ## v2.3.1 (2026-06-23)
 
 ### Bug Fixes
