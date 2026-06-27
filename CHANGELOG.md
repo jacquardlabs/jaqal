@@ -2,6 +2,15 @@
 
 <!-- version list -->
 
+## v2.4.2 (2026-06-27)
+
+### Bug Fixes
+
+- Validate reference/ paths in check_references.py (#46)
+  ([#53](https://github.com/jacquardlabs/studious/pull/53),
+  [`39f31a7`](https://github.com/jacquardlabs/studious/commit/39f31a77c16ea12965838b27967cc67d113f081b))
+
+
 ## v2.4.1 (2026-06-27)
 
 ### Bug Fixes
