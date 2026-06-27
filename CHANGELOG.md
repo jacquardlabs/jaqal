@@ -2,6 +2,15 @@
 
 <!-- version list -->
 
+## v2.4.1 (2026-06-27)
+
+### Bug Fixes
+
+- Resolve gate-ledger via ${CLAUDE_PLUGIN_ROOT} in gate commands
+  ([#52](https://github.com/jacquardlabs/studious/pull/52),
+  [`624fa5e`](https://github.com/jacquardlabs/studious/commit/624fa5ed22f15e0ca9b99dcfa4efb70a034a303b))
+
+
 ## v2.4.0 (2026-06-27)
 
 ### Documentation
